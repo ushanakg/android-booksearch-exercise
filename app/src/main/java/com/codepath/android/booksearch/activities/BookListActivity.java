@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +43,8 @@ public class BookListActivity extends AppCompatActivity {
     private BookAdapter bookAdapter;
     private BookClient client;
     private ArrayList<Book> abooks;
+    ProgressBar pb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,7 @@ public class BookListActivity extends AppCompatActivity {
 
         rvBooks = findViewById(R.id.rvBooks);
         abooks = new ArrayList<>();
+        pb = (ProgressBar) findViewById(R.id.pbLoading);
 
         // Initialize the adapter
         bookAdapter = new BookAdapter(this, abooks);
@@ -143,7 +148,10 @@ public class BookListActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // perform query here
+                pb.setVisibility(ProgressBar.VISIBLE);
                 fetchBooks(query);
+                pb.setVisibility(ProgressBar.INVISIBLE);
+
 
                 // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
                 // see https://code.google.com/p/android/issues/detail?id=24599
@@ -176,4 +184,6 @@ public class BookListActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
