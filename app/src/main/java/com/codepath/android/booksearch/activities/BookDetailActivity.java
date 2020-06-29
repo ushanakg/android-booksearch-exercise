@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.Menu;
@@ -36,6 +37,10 @@ public class BookDetailActivity extends AppCompatActivity {
 
         Log.i(BookDetailActivity.class.getSimpleName(), "Book:" + book.getTitle());
 
+        // Find the toolbar view inside the activity layout
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar(); // getActionBar();
         getSupportActionBar().setTitle(book.getTitle()); // set the top title
 
