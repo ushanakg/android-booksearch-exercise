@@ -92,6 +92,7 @@ public class BookListActivity extends AppCompatActivity {
     // Executes an API call to the OpenLibrary search endpoint, parses the results
     // Converts them into an array of book objects and adds them to the adapter
     private void fetchBooks(String query) {
+        pb.setVisibility(ProgressBar.VISIBLE);
         client = new BookClient();
         client.getBooks(query, new JsonHttpResponseHandler() {
 
@@ -120,6 +121,8 @@ public class BookListActivity extends AppCompatActivity {
                     // Invalid JSON format, show appropriate error.
                     e.printStackTrace();
                 }
+                pb.setVisibility(ProgressBar.INVISIBLE);
+
             }
 
             @Override
@@ -148,9 +151,8 @@ public class BookListActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // perform query here
-                pb.setVisibility(ProgressBar.VISIBLE);
                 fetchBooks(query);
-                pb.setVisibility(ProgressBar.INVISIBLE);
+
 
 
                 // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used

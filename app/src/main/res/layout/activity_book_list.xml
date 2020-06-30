@@ -16,6 +16,13 @@
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="@android:color/white"></androidx.appcompat.widget.Toolbar>
 
+    <ProgressBar
+        android:id="@+id/pbLoading"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible" />
+
     <RelativeLayout
         android:id="@+id/rl"
         android:layout_width="match_parent"
